@@ -1,0 +1,42 @@
+$theme-colors: (
+        "primary": #0a8db0,
+        "important": #198754FF,
+        "delete": #DC3545FF,
+        "add": #6c757d,
+);
+@import "bootstrap";
+
+.btn-group {
+  .btn-check:checked + .btn,
+  :not(.btn-check) + .btn:active,
+  .btn:first-child:active,
+  .btn.active,
+  .btn.show {
+    color: #ffffff;
+  }
+
+  .btn {
+    color: #333333;
+    border-color: #6c757d;
+  }
+
+}
+
+.todo-list__button {
+  width: 38px;
+  font-size: .9rem;
+}
+
+.todo-list__item {
+  &.important span{
+    color: #306c9d;
+  }
+
+  &.done span{
+    text-decoration: line-through;
+  }
+  .todo-list__text{
+    cursor: pointer;
+  }
+}
+

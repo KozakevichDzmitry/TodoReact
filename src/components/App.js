@@ -35,10 +35,12 @@ export default class App extends Component {
                     }
                 ]
             }
+            localStorage.setItem(state,[...state.items, newItem])
             return {
                 items: [...state.items, newItem]
             }
         })
+
     }
     deleteItem = (key) => {
         this.setState((state) => {
@@ -46,6 +48,7 @@ export default class App extends Component {
                 if (next.key !== key) acc.push(next)
                 return acc
             }, [])
+            localStorage.setItem(state,newItems)
             return {
                 items: newItems
             }

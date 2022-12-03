@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from "react-dom/client";
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faExclamation, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {faExclamation, faTrashCan} from '@fortawesome/free-solid-svg-icons';
 
-import'./style.scss'
+import './style.scss'
 
 import App from './components/App'
 
@@ -13,10 +13,10 @@ library.add(
     faTrashCan,
     // more icons go here
 );
-const state = localStorage.getItem('state') || []
-const data={
+const state = JSON.parse(localStorage.getItem('state')) || []
+const data = {
     title: 'Todo List',
-    items:state
+    items: state
     //     [
     //     {
     //         key: 1,
@@ -89,4 +89,3 @@ root.render(
         <App data={data}/>
     </React.StrictMode>
 );
-

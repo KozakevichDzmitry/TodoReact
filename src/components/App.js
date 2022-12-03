@@ -5,16 +5,18 @@ import HeaderPanel from "./header-panel/HeaderPanel";
 import FooterPanel from "./footer-panel/FooterPanel";
 
 export default class App extends Component {
+    maxKey = (() => {
+        const getMax = (a, b) => Math.max(a, b.key);
+        return this.props.data.items.reduce(getMax,0);
+    })()
     state = {
         ...this.props.data,
         filter: 'all',
-        searchText: '',
-        maxKey: this.props.data.items.length
-
+        searchText: ''
     }
     addToDoItem = (label) => {
         this.setState((state) => {
-            let key = ++state.maxKey
+            let key = ++this.maxKey
             const newItem = {
                 key: key,
                 text: label,
@@ -35,7 +37,7 @@ export default class App extends Component {
                     }
                 ]
             }
-            localStorage.setItem(state,[...state.items, newItem])
+            localStorage.setItem('state', JSON.stringify([...state.items, newItem]))
             return {
                 items: [...state.items, newItem]
             }
@@ -48,7 +50,7 @@ export default class App extends Component {
                 if (next.key !== key) acc.push(next)
                 return acc
             }, [])
-            localStorage.setItem(state,newItems)
+            localStorage.setItem('state', JSON.stringify(newItems))
             return {
                 items: newItems
             }

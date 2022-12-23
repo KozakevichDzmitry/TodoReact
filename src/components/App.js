@@ -37,7 +37,6 @@ export default class App extends Component {
                     }
                 ]
             }
-            localStorage.setItem('state', JSON.stringify([...state.items, newItem]))
             return {
                 items: [...state.items, newItem]
             }
@@ -50,7 +49,6 @@ export default class App extends Component {
                 if (next.key !== key) acc.push(next)
                 return acc
             }, [])
-            localStorage.setItem('state', JSON.stringify(newItems))
             return {
                 items: newItems
             }
@@ -127,6 +125,9 @@ export default class App extends Component {
         }
         return filteredItemsIndex
 
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        localStorage.setItem('state', JSON.stringify(this.state.items))
     }
 
     render() {
